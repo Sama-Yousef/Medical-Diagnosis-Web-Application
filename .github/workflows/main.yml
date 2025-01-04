@@ -1,0 +1,22 @@
+name:Deploy medical app to azure 
+on:
+  push:
+    branches:
+      -main #my branch deployment
+jobs:
+  build-and-deploy
+  runs-on : windows-latest
+steps:
+  -name:checkout code
+  uses:actions/checkout@v1
+
+  -name: set up Node.js
+  uses:actions/setup-node@v1
+  with:
+    node-version:'20' 
+
+  -name:install dependancies
+    run: npm install
+
+  -name : build madical app
+    run: npm run build
