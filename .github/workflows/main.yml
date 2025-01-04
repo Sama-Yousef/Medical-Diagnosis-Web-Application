@@ -4,9 +4,13 @@ on:
   push:
     branches:
       -main #my branch deployment
+
+env:
+  AZURE_WEBAPP_NAME: health-care
+  AZURE_WEBAPP_PACKAGE_PATH: "./build"
 jobs:
   build-and-deploy
-  runs-on: windows-latest
+    runs-on: windows-latest
 steps:
   -name: checkout code
   uses: actions/checkout@v1
@@ -25,7 +29,7 @@ steps:
   -name: Deploy to azure web app
     uses: azure/webapps-deploy@v1
     with:
-      app-name: 
-        publish-profile:
-        package: .\build
+      app-name: ${{env.AZURE_WEBAPP_NAME}}
+        publish-profile:${{secrets.HEALTHCARE}}
+        package: "${{env.AZURE_WEBAPP_PACKAGE_PATH}}"
       
