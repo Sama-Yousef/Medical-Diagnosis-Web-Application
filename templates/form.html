@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare App</title>
+   
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    .icon-button {
+        text-decoration: none; /* Removes the underline */
+        color: inherit; /* Inherits the text color from the parent element */
+        display: inline-block; /* Makes the link behave like a button */
+        padding: 10px 20px; /* Adjust padding as needed */
+        background-color:rgba(255, 255, 255, 0.91); /* Set a background color */
+        border-radius: 5px; /* Optional: adds rounded corners */
+        transition: background-color 0.3s ease; /* Optional: adds a hover effect */
+    }
+
+    .icon-button:hover {
+        background-color: #ddd; /* Changes background color on hover */
+    }
+
+    .icon-button img {
+        vertical-align: middle; /* Ensures the image is aligned with the text */
+        margin-right: 8px; /* Adds space between the image and the text */
+    }
+        body {
+            display: flex;
+            height: 120vh;
+            font-family: 'Comfortaa', Arial, sans-serif;
+        }
+
+        .left-section {
+            flex: 6;
+            background: url('/static/icons/Picture4.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 70px;
+        }
+
+        .left-section h1 {
+            color: #c676d2;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+
+        .buttons-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 70px;
+            margin-top: 35px;
+        }
+
+        .icon-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 230px;
+            height: 190px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .icon-button img {
+            width: 90px;
+            height: 90px;
+            margin-bottom: 30px;
+        }
+
+        .icon-button span {
+            font-size: 1.2rem;
+        }
+
+        .right-section {
+            flex: 1;
+            background-color: #c676d2;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .settings-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .settings-button img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .user-info img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .user-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .menu button {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: left;
+            width: 100%;
+        }
+
+        .menu button:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="right-section">
+        <button class="settings-button">
+            <img src="/static/icons/Picture14.svg" alt="Settings">
+        </button>
+        <div class="user-info">
+            <img src="/static/icons/Picture16.svg" alt="User">
+            <h3>User Name</h3>
+        </div>
+        <div class="menu">
+            <button>My History</button>
+            <button>My Reports</button>
+            <button>My Appointments</button>
+        </div>
+    </div>
+    <div class="left-section">
+        <h1>Welcome, wishing you a speedy recovery!</h1>
+        <div class="buttons-container">
+            <a href="/check" class="icon-button">
+                <img src="/static/icons/Picture1.svg" alt="Icon 1">
+                <span>Symptoms checker</span>
+            </a>
+
+            <a href="/medication" class="icon-button">
+                <img src="/static/icons/Picture10.svg" alt="Icon 2">
+                <span>check medication</span>
+            </a>
+            <div class="icon-button" id="diet-button">
+    <img src="/static/icons/Picture11.svg" alt="Icon 3">
+    <span>Diet Tips</span>
+</div>
+
+    <!-- Add JavaScript to handle the POST request -->
+    <script>
+        document.getElementById('diet-button').addEventListener('click', function() {
+            fetch('/get_diet_recommendation', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({})  // You can send data if needed
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Handle the response data (rendering the diet result)
+                document.body.innerHTML = data;  // This will replace the body content with the returned HTML
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+
+
+            <a href="\xray" class="icon-button">
+                <img src="/static/icons/Picture8.svg" alt="Icon 4">
+                <span>Upload X-ray</span>
+            </a>
+            <a href="\tips" class="icon-button">
+                <img src="/static/icons/Picture111.svg" alt="Icon 5">
+                <span>Check progress</span>
+            </a>
+            <div class="icon-button">
+                <img src="/static/icons/Picture6.svg" alt="Icon 6">
+                <span>Book Appointment</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

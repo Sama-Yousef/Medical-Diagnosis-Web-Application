@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+
+
+
+        <form action="/check_xray" method="POST" enctype="multipart/form-data">
+            <label for="xray_image">Upload Chest X-ray Image:</label>
+            <input type="file" id="xray_image" name="xray_image" accept="image/*" required>
+            <button type="submit">Check X-ray</button>
+        </form>
+
+    </div>
+</body>
+</html>
